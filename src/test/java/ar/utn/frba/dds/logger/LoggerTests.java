@@ -30,7 +30,7 @@ public class LoggerTests {
 
         this.logger.setErrorLoggingStrategy(dbLoggingStrategy);
 
-        Error error = new Error(
+        Error error = Error.of(
                 "An arithmetic error occurred when dividing by zero.",
                 "Division.java line 815",
                 LocalDateTime.now()

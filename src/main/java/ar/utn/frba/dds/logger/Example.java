@@ -9,17 +9,16 @@ import java.time.LocalDateTime;
 public class Example {
 
     public static void main(String[] args) {
-        Logger logger = new Logger(new TerminalErrorLoggingStrategy());
+        Logger logger = LoggerFactory.create("terminal");
 
-        logger.log(new Error(
+        logger.log(Error.of(
                 "An arithmetic error occurred when dividing by zero.",
-                "Division.java line 815",
-                LocalDateTime.now()
+                "Division.java line 815"
         ));
 
-        logger.setErrorLoggingStrategy(new DatabaseErrorLoggingStrategy(new MySQLDatabaseAdapter()));
+        logger.setErrorLoggingStrategy(LoggerFactory.createDBStrategy("mysql"));
 
-        logger.log(new Error(
+        logger.log(Error.of(
                 "An arithmetic error occurred when dividing by zero.",
                 "Division.java line 815",
                 LocalDateTime.now()
